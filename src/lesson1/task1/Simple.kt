@@ -53,6 +53,7 @@ fun quadraticRootProduct(a: Double, b: Double, c: Double): Double {
  * Пример главной функции
  */
 fun main() {
+    val account = accountInThreeYears(17 ,79)
     val x1x2 = quadraticRootProduct(1.0, 13.0, 42.0)
     println("Root product: $x1x2")
 }
@@ -76,52 +77,81 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
  */
 fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = TODO()
 
-/**
- * Тривиальная (1 балл)
- *
- * Пользователь задает угол в градусах, минутах и секундах (например, 36 градусов 14 минут 35 секунд).
- * Вывести значение того же угла в радианах (например, 0.63256).
- */
-fun angleInRadian(deg: Int, min: Int, sec: Int): Double = TODO()
 
-/**
- * Тривиальная (1 балл)
- *
- * Найти длину отрезка, соединяющего точки на плоскости с координатами (x1, y1) и (x2, y2).
- * Например, расстояние между (3, 0) и (0, 4) равно 5
- */
-fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = TODO()
+    /**
+     * Тривиальная (1 балл)
+     *
+     * Пользователь задает угол в градусах, минутах и секундах (например, 36 градусов 14 минут 35 секунд).
+     * Вывести значение того же угла в радианах (например, 0.63256).
+     */
+    fun angleInRadian(deg: Int, min: Int, sec: Int): Double =TODO()
 
-/**
- * Простая (2 балла)
- *
- * Пользователь задает целое число, большее 100 (например, 3801).
- * Определить третью цифру справа в этом числе (в данном случае 8).
- */
-fun thirdDigit(number: Int): Int = TODO()
+    /**
+     * Тривиальная (1 балл)
+     *
+     * Найти длину отрезка, соединяющего точки на плоскости с координатами (x1, y1) и (x2, y2).
+     * Например, расстояние между (3, 0) и (0, 4) равно 5
+     */
+    fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = TODO()
 
-/**
- * Простая (2 балла)
- *
- * Поезд вышел со станции отправления в h1 часов m1 минут (например в 9:25) и
- * прибыл на станцию назначения в h2 часов m2 минут того же дня (например в 13:01).
- * Определите время поезда в пути в минутах (в данном случае 216).
- */
-fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int = TODO()
+    /**
+     * Простая (2 балла)
+     *
+     * Пользователь задает целое число, большее 100 (например, 3801).
+     * Определить третью цифру справа в этом числе (в данном случае 8).
+     */
+    fun thirdDigit(number: Int): Int = TODO()
 
-/**
- * Простая (2 балла)
- *
- * Человек положил в банк сумму в s рублей под p% годовых (проценты начисляются в конце года).
- * Сколько денег будет на счету через 3 года (с учётом сложных процентов)?
- * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
- */
-fun accountInThreeYears(initial: Int, percent: Int): Double = TODO()
+    /**
+     * Простая (2 балла)
+     *
+     * Поезд вышел со станции отправления в h1 часов m1 минут (например в 9:25) и
+     * прибыл на станцию назначения в h2 часов m2 минут того же дня (например в 13:01).
+     * Определите время поезда в пути в минутах (в данном случае 216).
+     */
+    fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minutesArrive: Int): Int {
+        println("depart $hoursDepart .$minutesDepart")
+        println("arrive $hoursArrive .$minutesArrive")
+        val h1m1 = ((hoursDepart*60)+minutesDepart)// программа предусматривает возможность например выезда в 22.00 а приезда в 3.00
+        val h2m2 = ((hoursArrive*60)+minutesArrive)//  но не предусатривает многодневные поездки
+        val h3m3 = if(h1m1 > h2m2) {
+            1440+h2m2-h1m1} // 1440 это 24 часа, переведенные в минуты
+        else{
+            h2m2-h1m1 }
+        return h3m3
+    } //= TODO()
 
-/**
- * Простая (2 балла)
- *
- * Пользователь задает целое трехзначное число (например, 478).
- * Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
- */
-fun numberRevert(number: Int): Int = TODO()
+        /**
+         * Простая (2 балла)
+         *
+         * Человек положил в банк сумму в s рублей под p% годовых (проценты начисляются в конце года).
+         * Сколько денег будет на счету через 3 года (с учётом сложных процентов)?
+         * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
+         */
+        fun accountInThreeYears(initial: Int, percent: Int): Double {
+            println("init $initial" )
+            println("perc $percent" )
+            val oneYears = ((initial*1.0)*((percent*1.0 )*0.01)+initial ) //вывожу по формуле
+            val twoYears = ((oneYears*1.0)*((percent*1.0)*0.01)+oneYears )
+            val thrYears = ((1.0*twoYears)*((percent*1.0)*0.01)+twoYears )
+            println("itog $thrYears")
+            return thrYears
+        } //= TODO()
+
+        /**
+         * Простая (2 балла)
+         *
+         * Пользователь задает целое трехзначное число (например, 478).
+         * Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
+         */
+        fun numberRevert(number: Int): Int {
+            println( number )
+            val a = ( number/100 )
+            val b = ( (number - a*100 ) / 10)
+            val c = ( ( number -a*100)-b*10)
+            val fin = (c*100+b*10+a)  //отделяются сотни десятки и еденицы после переставляются местои и умножаются на десятки и  сотни
+            println( fin )
+            return fin
+        }
+                         // =TODO()
+
