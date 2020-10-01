@@ -18,7 +18,18 @@ fun pointInsideCircle(x: Double, y: Double, x0: Double, y0: Double, r: Double) =
  * Четырехзначное число назовем счастливым, если сумма первых двух ее цифр равна сумме двух последних.
  * Определить, счастливое ли заданное число, вернуть true, если это так.
  */
-fun isNumberHappy(number: Int): Boolean = TODO()
+fun isNumberHappy(number: Int): Boolean { //on tw th fr это как ни странно будут сами 4 числа
+    println(number)
+    val on = number / 1000
+    val tw = (number - (number / 1000) * 1000) / 100
+    val th = (number - (number / 100) * 100) / 10
+    val fr = (number - (number / 10) * 10) / 1
+    if (on + tw == th + fr) {
+        return true
+    } else {
+        return false
+    }
+} //=TODO()
 
 /**
  * Простая (2 балла)
@@ -59,4 +70,64 @@ fun circleInside(
  * кирпич 4 х 4 х 4 пройдёт через отверстие 4 х 4.
  * Вернуть true, если кирпич пройдёт
  */
-fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean = TODO()
+fun brickPasses(
+    a: Int,
+    b: Int,
+    c: Int,
+    r: Int,
+    s: Int
+): Boolean { // программа не предусматривает только случаи, когда 2\3 значений переменных равны
+    println(a)
+    println(b)
+    println(c)
+    println(r)
+    println(s)// проверка
+    var maxVhod: Int
+    var minVhod: Int
+    var maxVih: Int
+    var minVih: Int
+    if ((a > c) && (a > c)) { //ищем максимально значение
+        maxVhod = a
+    } else if ((b > a) && (b > c)) {
+        maxVhod = b
+    } else if ((c > a) && (c > b)) {
+        maxVhod = c
+    } else { // этот вариает если значение равны и избегает ошибок при равных значениях
+        maxVhod = a
+        minVhod = c
+    }
+    if ((a < c) && (a < c)) { // теперь ищем минимальное значение и так же предусматриваем возможность равенства
+        minVhod = a
+    } else if ((b < a) && (b < c)) {
+        minVhod = b
+    } else if ((c < a) && (c < b)) {
+        minVhod = c
+    } else {
+        maxVhod = a
+        minVhod = c
+    }
+    val midVhod =
+        a + b + c - minVhod - maxVhod // самый оптимизированный способ нахождения числа в центре ( из трех допустимых)
+    if (r > s) { // ищем максимальное значение в дырке
+        maxVih = r
+        minVih = s
+    } else {
+        minVih = r
+        maxVih = s
+    }
+    println("------")
+    println(minVhod)
+    println(midVhod)
+    println(maxVhod)
+    println("------")
+    println(maxVih)
+    println(minVih)
+    println("------") // проверка
+    if ((minVhod <= minVih) && (midVhod <= maxVih)) { // а тепер ьфинальный штрих я беру самое минимальное значение и мерю его в другое минимальное значение
+        return true
+    } else {
+        return false    // без нахождение минимального и максимального значение было бы геморойно предусматривать случаи, когда например беру первое попавшейся в руки число и мерю это число с первой попавшейся дыркий для этого числа
+    }                   //как раз первые значение поймали меня на том
+    return false
+}
+
