@@ -19,17 +19,12 @@ fun pointInsideCircle(x: Double, y: Double, x0: Double, y0: Double, r: Double) =
  * Определить, счастливое ли заданное число, вернуть true, если это так.
  */
 fun isNumberHappy(number: Int): Boolean { //on tw th fr это как ни странно будут сами 4 числа
-    println(number)
     val on = number / 1000
     val tw = (number - (number / 1000) * 1000) / 100
     val th = (number - (number / 100) * 100) / 10
     val fr = (number - (number / 10) * 10) / 1
-    if (on + tw == th + fr) {
-        return true
-    } else {
-        return false
-    }
-} //=TODO()
+    return on + tw == th + fr
+}
 
 /**
  * Простая (2 балла)
@@ -76,16 +71,67 @@ fun brickPasses(
     c: Int,
     r: Int,
     s: Int
-): Boolean { // программа не предусматривает только случаи, когда 2\3 значений переменных равны
-    println(a)
-    println(b)
-    println(c)
-    println(r)
-    println(s)// проверка
+): Boolean {
     var maxVhod: Int
     var minVhod: Int
+    var midVhod: Int
     var maxVih: Int
     var minVih: Int
+    if ((a == b) || (a == c) || (c == b)) { //вариант, когда все три знач равны
+        if ((a == b) && (b == c)) {
+            maxVhod = a
+            midVhod = b
+            minVhod = c
+        } else {
+            if (a == c) { // вариант, когда в команде 1 импостер
+                if (a > b) {
+                    maxVhod = a
+                    minVhod = b
+                    midVhod = c
+                } else {
+                    maxVhod = b
+                    minVhod = a
+                    midVhod = c
+                }
+            } else if (a == b) {
+                if (a > c) {
+                    maxVhod = a
+                    minVhod = c
+                    midVhod = b
+                } else {
+                    maxVhod = c
+                    minVhod = a
+                    midVhod = b
+                }
+            } else if (b == c) {
+                if (b > a) {
+                    maxVhod = c
+                    minVhod = a
+                    midVhod = b
+                } else {
+                    maxVhod = a
+                    minVhod = b
+                    midVhod = c
+                }
+            } else return false
+        }
+    } else { //вариант, когда никто не равен
+        maxVhod = maxOf(a, b, c)
+        minVhod = minOf(a, b, c)
+        midVhod = a + b + c - maxVhod - minVhod
+    }
+    if (r > s) {
+        maxVih = r
+        minVih = s
+    } else {
+        minVih = r
+        maxVih = s
+    }
+    return ((minVhod <= minVih) && (midVhod <= maxVih))
+    //по-моему получилось более читабельно
+
+} // оставлю  на память)
+/*
     if ((a > c) && (a > c)) { //ищем максимально значение
         maxVhod = a
     } else if ((b > a) && (b > c)) {
@@ -130,4 +176,4 @@ fun brickPasses(
     }                   //как раз первые значение поймали меня на том
     return false
 }
-
+*/ //сохрнаю на потом

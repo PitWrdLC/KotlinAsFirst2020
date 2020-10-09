@@ -120,7 +120,13 @@ fun collatzSteps(x: Int): Int = TODO()
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int = TODO()
+fun lcm(m: Int, n: Int): Int {
+    var i: Int = 1
+    while ((i % n) == (i % m)) {
+        i++
+    }
+    return i // спасибо за миллиардные значения( без них было бы скучно)
+}
 
 /**
  * Средняя (3 балла)
@@ -129,7 +135,16 @@ fun lcm(m: Int, n: Int): Int = TODO()
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean = TODO()
+fun isCoPrime(m: Int, n: Int): Boolean {
+    var i:Int = minOf(n,m)
+
+    println(n)
+    println(m)
+    while ((m/i)==(n/i)){
+        i--
+    }
+    return 1 > i
+}// TODO()
 
 /**
  * Средняя (3 балла)
