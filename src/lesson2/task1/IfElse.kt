@@ -74,7 +74,7 @@ fun ageDescription(age: Int): String {
         x = x % 100
         return when {
             age == 0 -> "лол тебя еще нет "// почему бы и нет?)
-            age == 1 -> "$age год"
+            x == 1 -> "$age год"
             x == 0 -> "$age лет"
             x < 5 -> "$age года"
             else -> "$age лет"
