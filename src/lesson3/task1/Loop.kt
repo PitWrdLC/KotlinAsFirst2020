@@ -87,7 +87,19 @@ fun fib(n: Int): Int = TODO()
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int = TODO()
+fun minDivisor(n: Int): Int {
+    var min: Int = 2
+    for (min in 2..n) {
+        if (n % min == 0) {
+            println("$min !!!!!")
+            return min
+        } else {
+            continue
+        }
+    }
+    println(min)
+    return min
+}
 
 /**
  * Простая (2 балла)
@@ -121,12 +133,20 @@ fun collatzSteps(x: Int): Int = TODO()
  * минимальное число k, которое делится и на m и на n без остатка
  */
 fun lcm(m: Int, n: Int): Int {
+    var i: Int = 2
+    for (i in 2..n * m) { //n * m в теории максимальное значение,но мой пк слишком слаб, чтоб это проверить
+        if ((i % n) == 0 && (i % m) == 0) return i else continue
+    }
+    return -1
+}
+/*
     var i: Int = 1
     while ((i % n) == (i % m)) {
+        println(i)
         i++
     }
     return i // спасибо за миллиардные значения( без них было бы скучно)
-}
+} */
 
 /**
  * Средняя (3 балла)
@@ -135,15 +155,12 @@ fun lcm(m: Int, n: Int): Int {
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean =TODO()/*{
-    var i:Int = minOf(n,m)
-
-    println(n)
-    println(m)
-    while ((m/i)==(n/i)){
-        i--
+fun isCoPrime(m: Int, n: Int): Boolean {
+    var i: Int = minOf(n, m)
+    for (i in 2..maxOf(n, m)) {
+        if ((m % i) == 0 && (n % i) == 0) return true else return continue
     }
-    return 1 > i
+    return false
 }// TODO()*/
 
 /**
