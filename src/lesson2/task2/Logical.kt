@@ -77,12 +77,6 @@ fun brickPasses(
     var midVhod: Int
     var maxVih: Int
     var minVih: Int
-    if ((a == b) || (a == c) || (c == b)) { //вариант, когда все три знач равны
-        if ((a == b) && (b == c)) {
-            maxVhod = a
-            midVhod = b
-            minVhod = c
-        } else {
             if (a == c) { // вариант, когда в команде 1 импостер
                 if (a > b) {
                     maxVhod = a
@@ -113,21 +107,14 @@ fun brickPasses(
                     minVhod = b
                     midVhod = c
                 }
-            } else return false
-        }
-    } else { //вариант, когда никто не равен
-        maxVhod = maxOf(a, b, c)
-        minVhod = minOf(a, b, c)
-        midVhod = a + b + c - maxVhod - minVhod
-    }
-    if (r > s) {
-        maxVih = r
-        minVih = s
-    } else {
-        minVih = r
-        maxVih = s
-    }
-    return ((minVhod <= minVih) && (midVhod <= maxVih))
+            }else { 
+                maxVhod = maxOf(a, b, c)
+                minVhod = minOf(a, b, c)
+                midVhod = a + b + c - maxVhod - minVhod
+            }
+        maxVih = maxOf(s,r)
+        minVih = minOf(s,r)
+     return ((minVhod <= minVih) && (midVhod <= maxVih))
     //по-моему получилось более читабельно
 
 } // оставлю  на память)
@@ -177,3 +164,9 @@ fun brickPasses(
     return false
 }
 */ //сохрнаю на потом
+//if ((a == b) || (a == c) || (c == b)) { //вариант, когда все три знач равны
+  //  if ((a == b) && (b == c)) {
+   //     maxVhod = a
+ //       midVhod = b
+  //      minVhod = c
+ //   } else {

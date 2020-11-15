@@ -241,7 +241,78 @@ fun decimalFromString(str: String, base: Int): Int = TODO()
  * 90 = XC, 100 = C, 400 = CD, 500 = D, 900 = CM, 1000 = M.
  * Например: 23 = XXIII, 44 = XLIV, 100 = C
  */
-fun roman(n: Int): String = TODO()
+fun roman(n: Int): String {
+    var k = n
+    var number = ""
+    do {
+                if (n - 1000 >= 0) {
+            k =k- 1000
+            number = number.padEnd(1, "M")
+            break
+        }
+        if (n - 900 >= 0) {
+            k = k - 900
+            number = number.padEnd(1, "CM")
+            break
+        }
+        if (n - 500 >= 0) {
+            k= k - 500
+            number = number.padEnd(1, "D")
+            break
+        }
+        if (n - 400 >= 0) {
+            k = k - 400
+            number = number.padEnd(1, "CD")
+            break
+        }
+        if (n - 100 >= 0) {
+            k = k - 100
+            number = number.padEnd(1, "C")
+            break
+        }
+        if (n - 90 >= 0) {
+            k = k - 90
+            number = number.padEnd(1, "XC")
+            break
+        }
+        if (n - 50 >= 0) {
+            k = k - 50
+            number = number.padEnd(1, "L")
+            break
+        }
+        if (n - 40 >= 0) {
+            k = k - 40
+            number = number.padEnd(1, "XL")
+            break
+        }
+        if (n - 10 >= 0) {
+            k = k - 10
+            number = number.padEnd(1, "X")
+            break
+        }
+        if (n - 9 >= 0) {
+            k = k - 9
+            number = number.padEnd(1, "XI")
+            break
+        }
+        if (n - 5 >= 0) {
+            k = k - 5
+            number = number.padEnd(1, "V")
+            break
+        }
+        if (n - 4 >= 0) {
+            k= k - 4
+            number = number.padEnd(1, "IV")
+            break
+        }
+        if (n - 1 >= 0) {
+            k = k - 1
+            number = number.padEnd(1, "I")
+            break
+        }
+    } while (k > 0)
+    return number
+}
 
 /**
  * Очень сложная (7 баллов)

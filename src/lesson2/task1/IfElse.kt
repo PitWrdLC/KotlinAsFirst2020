@@ -170,7 +170,7 @@ fun segmentLength(
     c: Int,
     d: Int
 ): Int {
-    var fin: Int = -1 //чтоб был 1 ретёрн пригодится доп переменная
+    var fin = -1
     if ((a == minOf(a, b, c, d)) && (b == maxOf(a,b, c,d))) { // значит существуют всего 3 места для прямых - 1:2 1:3 1:4 [ проверка 1:4 a:b]
         fin = d - c
     } else if ((c == minOf(a, b, c, d)) && (d == maxOf(a, b, c, d))) {
