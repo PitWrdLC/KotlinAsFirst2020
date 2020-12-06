@@ -167,7 +167,7 @@ fun polynom(p: List<Int>, x: Int): Int = TODO()
  * Пустой список не следует изменять. Вернуть изменённый список.
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
- */
+2 */
 fun accumulate(list: MutableList<Int>): MutableList<Int> = TODO()
 
 /**
@@ -243,76 +243,102 @@ fun decimalFromString(str: String, base: Int): Int = TODO()
  */
 fun roman(n: Int): String {
     var k = n
+    var time = 10
     var number = ""
+    val m = "M"
+    val cm = "CM"
+    val d = "D"
+    val cd = "CD"
+    val c = "C"
+    val xc = "XC"
+    val l = "L"
+    val xl = "XL"
+    val x = "X"
+    val ix = "IX"
+    val v = "V"
+    val iv = "IV"
+    val i = "I"
     do {
-                if (n - 1000 >= 0) {
-            k =k- 1000
-            number = number.padEnd(1, "M")
-            break
-        }
-        if (n - 900 >= 0) {
-            k = k - 900
-            number = number.padEnd(1, "CM")
-            break
-        }
-        if (n - 500 >= 0) {
-            k= k - 500
-            number = number.padEnd(1, "D")
-            break
-        }
-        if (n - 400 >= 0) {
-            k = k - 400
-            number = number.padEnd(1, "CD")
-            break
-        }
-        if (n - 100 >= 0) {
-            k = k - 100
-            number = number.padEnd(1, "C")
-            break
-        }
-        if (n - 90 >= 0) {
-            k = k - 90
-            number = number.padEnd(1, "XC")
-            break
-        }
-        if (n - 50 >= 0) {
-            k = k - 50
-            number = number.padEnd(1, "L")
-            break
-        }
-        if (n - 40 >= 0) {
-            k = k - 40
-            number = number.padEnd(1, "XL")
-            break
-        }
-        if (n - 10 >= 0) {
-            k = k - 10
-            number = number.padEnd(1, "X")
-            break
-        }
-        if (n - 9 >= 0) {
-            k = k - 9
-            number = number.padEnd(1, "XI")
-            break
-        }
-        if (n - 5 >= 0) {
-            k = k - 5
-            number = number.padEnd(1, "V")
-            break
-        }
-        if (n - 4 >= 0) {
-            k= k - 4
-            number = number.padEnd(1, "IV")
-            break
-        }
-        if (n - 1 >= 0) {
-            k = k - 1
-            number = number.padEnd(1, "I")
-            break
-        }
+        println(k)
+        do {
+            if (k - 1000 >= 0) {
+                k = k - 1000
+                number += m
+                break
+            }
+            if (k - 900 >= 0) {
+                k = k - 900
+                number += cm
+                break
+            }
+            if (k - 500 >= 0) {
+                k = k - 500
+                number += d
+                break
+            }
+            if (k - 400 >= 0) {
+                k = k - 400
+                number += cd
+                break
+            }
+            if (k - 100 >= 0) {
+                k = k - 100
+                number += c
+                break
+            }
+            if (k - 90 >= 0) {
+                k = k - 90
+                number += xc
+                break
+            }
+            if (k - 50 >= 0) {
+                k = k - 50
+                number += l
+                break
+            }
+            if (k - 40 >= 0) {
+                k = k - 40
+                number += xl
+                break
+            }
+            if (k - 10 >= 0) {
+                k = k - 10
+                number += x
+                break
+            }
+            if (k - 9 >= 0) {
+                k = k - 9
+                number += ix
+                break
+            }
+            if (k - 5 >= 0) {
+                k = k - 5
+                number += v
+                break
+            }
+            if (k - 4 >= 0) {
+                k = k - 4
+                number += iv
+                break
+            }
+            if (k - 1 >= 0) {
+                k = k - 1
+                number += i
+                break
+            }
+            if (k == 0) {
+                break
+            }
+
+        } while (k > 0)
+
     } while (k > 0)
+    println("$number FINALY")
     return number
 }
+/*  // padEnd это привелегия char?
+
+*/
 
 /**
  * Очень сложная (7 баллов)
@@ -321,4 +347,152 @@ fun roman(n: Int): String {
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
-fun russian(n: Int): String = TODO()
+fun russian(n: Int): String { // интегрирую числа 10-19 и готово( ну и пробел подумаю как настроить нормально)
+    var number: String = ""
+    var k = n
+    var tisacha = 1
+    var ost = 0
+    println(" this is $k")
+
+    if (n > 999) tisacha = 1000
+
+    repeat(2) { // хотел через двойной while-do как в прошлом примере но чет не зашло
+        if (k / (100 * tisacha) > 0) {
+            when (k / (100 * tisacha)) {
+                9 -> number += "девятьсот"
+                8 -> number += "восемьсот"
+                7 -> number += "семьсот"
+                6 -> number += "шестьсот"
+                5 -> number += "пятьсот"
+                4 -> number += "четыреста"
+                3 -> number += "триста"
+                2 -> number += "двести"
+                1 -> number += "сто"
+                0 -> number += ""
+            }
+            k -= (k / (100 * tisacha)) * (100 * tisacha)
+            if (k / 1 > 0) number += " "
+            println(" sotka  $k")
+        }
+
+        if (k / (10 * tisacha) > 1) {
+            when (k / (10 * tisacha)) {
+                9 -> number += "девяносто"
+                8 -> number += "весемдесят"
+                7 -> number += "семьдесят"
+                6 -> number += "шестьдесят"
+                5 -> number += "пятьдесят"
+                4 -> number += "сорок"
+                3 -> number += "тридцать"
+                2 -> number += "двадцать"
+                1 -> number += "десять"
+                0 -> number += ""
+            }
+            k -= (k / (10 * tisacha)) * (10 * tisacha)
+            if (k / 1 > 0) number += " "
+            println(" desyat'  $k")
+        }
+       /* if ((k / (1 * tisacha) >= 10) && (k / (1 * tisacha) < 20)) {
+            when (k / (1 * tisacha)) {
+                10 -> number += "десять"
+                11 -> number += "одиннадцать"
+                12 -> number += "двенадцать"
+                13 -> number += "тринадцать"
+                14 -> number += "четырнадцать"
+                15 -> number += "пятнадцать"
+                16 -> number += "шестнадцать"
+                17 -> number += "семьнадцать"
+                18 -> number += "восемьнадцать"
+                19 -> number += "девятнадцать"
+            }
+            println("3  $k")
+            k -= (k / (1 * tisacha)) * (1 * tisacha)
+            println(" esenici  $k")
+        }*/
+        if (k / (1 * tisacha) > 0) {
+            if ((k / 1000 == 2) || (k / 1000 == 1)) {
+                ost = (k / 1000) * 1000
+                println(" 1  $k")
+                when (k / 1000) {
+                    1 -> number += "одна"
+                    2 -> number += "две"
+                }
+                k -= (k / 1000) * 1000
+            } else {
+                ost = (k / 1000) * 1000
+                when (k / (1 * tisacha)) {
+                    9 -> number += "девять"
+                    8 -> number += "весемть"
+                    7 -> number += "семь"
+                    6 -> number += "шесть"
+                    5 -> number += "пять"
+                    4 -> number += "четыре"
+                    3 -> number += "три"
+                    2 -> number += "два"
+                    1 -> number += "один"
+                    0 -> number += ""
+                }
+                println(" 2  $k")
+                k -= (k / (1 * tisacha)) * (1 * tisacha)
+                println(" esenici  $k")
+            }
+        }
+        if (k / 1 > 0) number += " "
+        if (ost > 999) tisacha = 1
+        when (ost) {
+            1000 -> number += "тысяча"
+            2000 -> number += "тысячи"
+            3000 -> number += "тысячи"
+            4000 -> number += "тысячи"
+            5000 -> number += "тысяч"
+            6000 -> number += "тысяч"
+            7000 -> number += "тысяч"
+            8000 -> number += "тысяч"
+            9000 -> number += "тысяч"
+
+        }
+        if (k / 1 > 0) number += " "
+
+    }
+    return number
+}
+
+
+//number.StringUtils.chpop()
+//if (number.padEnd())
+
+
+/*
+if (ost > 999) {
+            when (k / 1000) {
+                1 -> number + "тысяча"
+                2 -> number + "тысячи"
+                3 -> number + "тысячи"
+                4 -> number + "тысячи"
+                5 -> number + "тысяч"
+                6 -> number + "тысяч"
+                7 -> number + "тысяч"
+                8 -> number + "тысяч"
+                9 -> number + "тысяч"
+                0 -> number + "тысяч"
+            }
+
+        }
+             if ((k / (1 * tisacha) < 20) || (k / (1 * tisacha) > 10)){
+            println( "osobennoe chislo $k")
+                when (k / (10 * tisacha)) {
+                    11 -> "одинадцать"
+                    12 -> "двенадцать"
+                    13 -> "тринадцать"
+                    14 -> "четырнадцать"
+                    15 -> "пятнадцать"
+                    16 -> "шестнадцать"
+                    17 -> "семьнадцать"
+                    18 -> "восемьнадцать"
+                    19 -> "девятьнадцать"
+                }
+            if (ost > 999) tisacha = 1
+            k = (k / (1 * tisacha) *(1 * tisacha))
+            break
+            }
+        */

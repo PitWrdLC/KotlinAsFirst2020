@@ -14,10 +14,7 @@ package lesson5.task1
  * на основе цен из `costs`. В случае неизвестной цены считать, что товар
  * игнорируется.
  */
-fun shoppingListCost(
-    shoppingList: List<String>,
-    costs: Map<String, Double>
-): Double {
+fun shoppingListCost(shoppingList: List<String>, costs: Map<String, Double>): Double {
     var totalCost = 0.0
 
     for (item in shoppingList) {
@@ -129,7 +126,7 @@ fun subtractOf(a: MutableMap<String, String>, b: Map<String, String>) {
 }
 
 /**
- * Простая (2 балла)
+ * Простая (2 балла)ва
  *
  * Для двух списков людей найти людей, встречающихся в обоих списках.
  * В выходном списке не должно быть повторяюихся элементов,
@@ -270,14 +267,23 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
  *
  * Индексы в результате должны следовать в порядке (меньший, больший).
  *
- * Постарайтесь сделать ваше решение как можно более эффективным,
+ * Постарайтесь сделать ваше решение как можно более эффективным
  * используя то, что вы узнали в данном уроке.
  *
  * Например:
  *   findSumOfTwo(listOf(1, 2, 3), 4) -> Pair(0, 2)
  *   findSumOfTwo(listOf(1, 2, 3), 6) -> Pair(-1, -1)
  */
-fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> = TODO()
+fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> { // зачем нужны списки в списке?
+    for (num in list.indices) {
+        for (nym in num + 1 until list.size) { // дай бог здоровья тому, кто придумал until
+            if ((list[num] + list[nym] )== number && num != nym)
+                return Pair(num, nym)
+        }
+    }
+    return Pair(-1, -1)
+}
+
 
 /**
  * Очень сложная (8 баллов)

@@ -77,7 +77,7 @@ fun brickPasses(
     var midVhod: Int
     var maxVih: Int
     var minVih: Int
-            if (a == c) { // вариант, когда в команде 1 импостер
+            if (a == c) {
                 if (a > b) {
                     maxVhod = a
                     minVhod = b

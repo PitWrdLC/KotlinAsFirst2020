@@ -171,17 +171,19 @@ fun segmentLength(
     d: Int
 ): Int {
     var fin = -1
-    if ((a == minOf(a, b, c, d)) && (b == maxOf(a,b, c,d))) { // значит существуют всего 3 места для прямых - 1:2 1:3 1:4 [ проверка 1:4 a:b]
+    var minN= minOf(a,b,c,d)
+    var maxN= maxOf(a,b,c,d)
+    if ((a == minN) && (b == maxOf(a,b, c,d))) { // значит существуют всего 3 места для прямых - 1:2 1:3 1:4 [ проверка 1:4 a:b]
         fin = d - c
-    } else if ((c == minOf(a, b, c, d)) && (d == maxOf(a, b, c, d))) {
+    } else if ((c == minN) && (d == maxN)) {
         fin = b - a
-    } else if ((a == minOf(a, b, c, d)) && (d == maxOf(a, b, c, d))) { // [ 1:3 ]
+    } else if ((a == minN) && (d == maxN)) { // [ 1:3 ]
         if (c > b) {
             fin = -1
         } else {
             fin = b - c
         }
-    } else if ((c == minOf(a, b, c, d)) && (b == maxOf(a, b, c, d))) {
+    } else if ((c == minN) && (b == maxN)) {
         if (a > d) {
             fin = -1
         } else {

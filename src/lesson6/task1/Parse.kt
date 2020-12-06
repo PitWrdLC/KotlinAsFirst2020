@@ -32,7 +32,7 @@ fun timeStrToSeconds(str: String): Int {
 fun twoDigitStr(n: Int) = if (n in 0..9) "0$n" else "$n"
 
 /**
- * Пример
+ * Пример ап
  *
  * Дано seconds -- время в секундах, прошедшее с начала дня.
  * Вернуть текущее время в виде строки в формате "ЧЧ:ММ:СС".
@@ -162,7 +162,15 @@ fun firstDuplicateIndex(str: String): Int = TODO()
  * или пустую строку при нарушении формата строки.
  * Все цены должны быть больше нуля либо равны нулю.
  */
-fun mostExpensive(description: String): String = TODO()
+fun mostExpensive(description: String): String {
+    var k =""
+    val map = description.split("; ").associate {
+        val (left,right) = it.split(" ")
+        left to right.toDouble()
+    }
+    println("$map")
+    return k
+}
 
 /**
  * Сложная (6 баллов)
