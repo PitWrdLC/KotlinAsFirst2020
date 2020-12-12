@@ -190,7 +190,7 @@ fun isCoPrime(m: Int, n: Int): Boolean {
     println(n)
     println(m)
     if ((n == m) || (n <= 1) || (m <= 1)) {
-        false
+        return false
     } else {
         var maxPerem = (maxOf(n, m))
         var minPerem = (minOf(n, m))

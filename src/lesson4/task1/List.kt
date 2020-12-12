@@ -356,143 +356,106 @@ fun russian(n: Int): String { // интегрирую числа 10-19 и гот
 
     if (n > 999) tisacha = 1000
 
-    repeat(2) { // хотел через двойной while-do как в прошлом примере но чет не зашло
+    repeat(2){ // хотел через двойной while-do как в прошлом примере но чет не зашло
         if (k / (100 * tisacha) > 0) {
             when (k / (100 * tisacha)) {
-                9 -> number += "девятьсот"
-                8 -> number += "восемьсот"
-                7 -> number += "семьсот"
-                6 -> number += "шестьсот"
-                5 -> number += "пятьсот"
-                4 -> number += "четыреста"
-                3 -> number += "триста"
-                2 -> number += "двести"
-                1 -> number += "сто"
+                9 -> number += "девятьсот "
+                8 -> number += "восемьсот "
+                7 -> number += "семьсот "
+                6 -> number += "шестьсот "
+                5 -> number += "пятьсот "
+                4 -> number += "четыреста "
+                3 -> number += "триста "
+                2 -> number += "двести "
+                1 -> number += "сто "
                 0 -> number += ""
             }
             k -= (k / (100 * tisacha)) * (100 * tisacha)
-            if (k / 1 > 0) number += " "
-            println(" sotka  $k")
+            println(" сотня  $k")
         }
+        if ((k / (1 * tisacha) >= 10) && (k / (1 * tisacha) < 20)) {
+            when (k / (1 * tisacha)) {
+                10 -> number += "десять "
+                11 -> number += "одиннадцать "
+                12 -> number += "двенадцать "
+                13 -> number += "тринадцать "
+                14 -> number += "четырнадцать "
+                15 -> number += "пятнадцать "
+                16 -> number += "шестнадцать "
+                17 -> number += "семьнадцать "
+                18 -> number += "восемьнадцать "
+                19 -> number += "девятнадцать "
+            }
+            k -= (k / (1 * tisacha)) * (1 * tisacha)
+            println(" особая десятка $k")
+            ost = 9000
+        }
+
 
         if (k / (10 * tisacha) > 1) {
             when (k / (10 * tisacha)) {
-                9 -> number += "девяносто"
-                8 -> number += "весемдесят"
-                7 -> number += "семьдесят"
-                6 -> number += "шестьдесят"
-                5 -> number += "пятьдесят"
-                4 -> number += "сорок"
-                3 -> number += "тридцать"
-                2 -> number += "двадцать"
-                1 -> number += "десять"
+                9 -> number += "девяносто "
+                8 -> number += "весемдесят "
+                7 -> number += "семьдесят "
+                6 -> number += "шестьдесят "
+                5 -> number += "пятьдесят "
+                4 -> number += "сорок "
+                3 -> number += "тридцать "
+                2 -> number += "двадцать "
+                1 -> number += "десять "
                 0 -> number += ""
             }
             k -= (k / (10 * tisacha)) * (10 * tisacha)
-            if (k / 1 > 0) number += " "
-            println(" desyat'  $k")
+            println(" десятка  $k")
         }
-       /* if ((k / (1 * tisacha) >= 10) && (k / (1 * tisacha) < 20)) {
-            when (k / (1 * tisacha)) {
-                10 -> number += "десять"
-                11 -> number += "одиннадцать"
-                12 -> number += "двенадцать"
-                13 -> number += "тринадцать"
-                14 -> number += "четырнадцать"
-                15 -> number += "пятнадцать"
-                16 -> number += "шестнадцать"
-                17 -> number += "семьнадцать"
-                18 -> number += "восемьнадцать"
-                19 -> number += "девятнадцать"
-            }
-            println("3  $k")
-            k -= (k / (1 * tisacha)) * (1 * tisacha)
-            println(" esenici  $k")
-        }*/
         if (k / (1 * tisacha) > 0) {
             if ((k / 1000 == 2) || (k / 1000 == 1)) {
                 ost = (k / 1000) * 1000
                 println(" 1  $k")
                 when (k / 1000) {
-                    1 -> number += "одна"
-                    2 -> number += "две"
+                    1 -> number += "одна "
+                    2 -> number += "две "
                 }
                 k -= (k / 1000) * 1000
             } else {
                 ost = (k / 1000) * 1000
                 when (k / (1 * tisacha)) {
-                    9 -> number += "девять"
-                    8 -> number += "весемть"
-                    7 -> number += "семь"
-                    6 -> number += "шесть"
-                    5 -> number += "пять"
-                    4 -> number += "четыре"
-                    3 -> number += "три"
-                    2 -> number += "два"
-                    1 -> number += "один"
+                    9 -> number += "девять "
+                    8 -> number += "весемь "
+                    7 -> number += "семь "
+                    6 -> number += "шесть "
+                    5 -> number += "пять "
+                    4 -> number += "четыре "
+                    3 -> number += "три "
+                    2 -> number += "два "
+                    1 -> number += "один "
                     0 -> number += ""
                 }
                 println(" 2  $k")
                 k -= (k / (1 * tisacha)) * (1 * tisacha)
-                println(" esenici  $k")
+                println(" еденицы $k")
             }
         }
-        if (k / 1 > 0) number += " "
-        if (ost > 999) tisacha = 1
-        when (ost) {
-            1000 -> number += "тысяча"
-            2000 -> number += "тысячи"
-            3000 -> number += "тысячи"
-            4000 -> number += "тысячи"
-            5000 -> number += "тысяч"
-            6000 -> number += "тысяч"
-            7000 -> number += "тысяч"
-            8000 -> number += "тысяч"
-            9000 -> number += "тысяч"
+        if (ost > 999) {
+            tisacha = 1
+            when (ost) {
+                1000 -> number += "тысяча "
+                2000 -> number += "тысячи "
+                3000 -> number += "тысячи "
+                4000 -> number += "тысячи "
+                5000 -> number += "тысяч "
+                6000 -> number += "тысяч "
+                7000 -> number += "тысяч "
+                8000 -> number += "тысяч "
+                9000 -> number += "тысяч "
 
+            }
+            ost = 0
         }
-        if (k / 1 > 0) number += " "
-
+        tisacha = 1
     }
-    return number
+println("number $number")
+    return number.removeSuffix(" ")
 }
 
 
-//number.StringUtils.chpop()
-//if (number.padEnd())
-
-
-/*
-if (ost > 999) {
-            when (k / 1000) {
-                1 -> number + "тысяча"
-                2 -> number + "тысячи"
-                3 -> number + "тысячи"
-                4 -> number + "тысячи"
-                5 -> number + "тысяч"
-                6 -> number + "тысяч"
-                7 -> number + "тысяч"
-                8 -> number + "тысяч"
-                9 -> number + "тысяч"
-                0 -> number + "тысяч"
-            }
-
-        }
-             if ((k / (1 * tisacha) < 20) || (k / (1 * tisacha) > 10)){
-            println( "osobennoe chislo $k")
-                when (k / (10 * tisacha)) {
-                    11 -> "одинадцать"
-                    12 -> "двенадцать"
-                    13 -> "тринадцать"
-                    14 -> "четырнадцать"
-                    15 -> "пятнадцать"
-                    16 -> "шестнадцать"
-                    17 -> "семьнадцать"
-                    18 -> "восемьнадцать"
-                    19 -> "девятьнадцать"
-                }
-            if (ost > 999) tisacha = 1
-            k = (k / (1 * tisacha) *(1 * tisacha))
-            break
-            }
-        */

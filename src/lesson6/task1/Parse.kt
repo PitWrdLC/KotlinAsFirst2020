@@ -114,7 +114,31 @@ fun flattenPhoneNumber(phone: String): String = TODO()
  * Прочитать строку и вернуть максимальное присутствующее в ней число (717 в примере).
  * При нарушении формата входной строки или при отсутствии в ней чисел, вернуть -1.
  */
-fun bestLongJump(jumps: String): Int = TODO()
+fun bestLongJump(jumps: String): Int {
+    println("this is $jumps")
+    var final = -1
+    val number = jumps.split(" ").sortedDescending()
+    println(number)
+
+    var proverka = jumps.filterNot { it.isDigit() }.filterNot { it == '%' }
+        .filterNot { it == '-' } // обнаруживание зашкварных символов путем исключения правильных петушков ...отом обнаружил containsAll
+    println("proverka$proverka")
+
+    try {
+        var proverkaFin = proverka.removePrefix(" ").first() //как словить исключение и выдать импостера?
+        println("proverkaFin$proverkaFin")
+        return -1
+    } finally {
+
+        try {
+            final = number.elementAt(0).toInt()
+            println(final)
+        } finally {
+            return final
+        }
+
+    }
+}
 
 /**
  * Сложная (6 баллов)
@@ -163,13 +187,20 @@ fun firstDuplicateIndex(str: String): Int = TODO()
  * Все цены должны быть больше нуля либо равны нулю.
  */
 fun mostExpensive(description: String): String {
-    var k =""
-    val map = description.split("; ").associate {
-        val (left,right) = it.split(" ")
-        left to right.toDouble()
+    var k = ""
+println("this is $description")
+    try {
+        var mapa = description.split("; ").associate {
+            val (key, valye) = it.split(" ")
+            key to valye.toDouble()
+        }
+        println("$mapa")
+
+
+    } finally {
+        return k
+
     }
-    println("$map")
-    return k
 }
 
 /**

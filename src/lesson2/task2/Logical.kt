@@ -77,44 +77,45 @@ fun brickPasses(
     var midVhod: Int
     var maxVih: Int
     var minVih: Int
-            if (a == c) {
-                if (a > b) {
-                    maxVhod = a
-                    minVhod = b
-                    midVhod = c
-                } else {
-                    maxVhod = b
-                    minVhod = a
-                    midVhod = c
-                }
-            } else if (a == b) {
-                if (a > c) {
-                    maxVhod = a
-                    minVhod = c
-                    midVhod = b
-                } else {
-                    maxVhod = c
-                    minVhod = a
-                    midVhod = b
-                }
-            } else if (b == c) {
-                if (b > a) {
-                    maxVhod = c
-                    minVhod = a
-                    midVhod = b
-                } else {
-                    maxVhod = a
-                    minVhod = b
-                    midVhod = c
-                }
-            }else { 
-                maxVhod = maxOf(a, b, c)
-                minVhod = minOf(a, b, c)
-                midVhod = a + b + c - maxVhod - minVhod
-            }
-        maxVih = maxOf(s,r)
-        minVih = minOf(s,r)
-     return ((minVhod <= minVih) && (midVhod <= maxVih))
+  //  if (a == c) {
+ //       if (a > b) {
+ //           maxVhod = a
+  //          minVhod = b
+  //          midVhod = c
+ //       } else {
+ //           maxVhod = b
+ //           minVhod = a
+ //           midVhod = c
+  //      }
+  //  } else if (a == b) {
+ //       if (a > c) {
+ //           maxVhod = a
+ //           minVhod = c
+ //           midVhod = b
+ //       } else {
+ //           maxVhod = c
+ //           minVhod = a
+ //           midVhod = b
+//        }
+ //   } else if (b == c) {
+ //       if (b > a) {
+  //          maxVhod = c
+//            minVhod = a
+ //           midVhod = b
+ //       } else {
+ //           maxVhod = a
+  //          minVhod = b
+ //           midVhod = c
+  //      }
+ //   } else
+
+        maxVhod = maxOf(a, b, c)
+       minVhod = minOf(a, b, c)
+        midVhod = a + b + c - maxVhod - minVhod
+
+    maxVih = maxOf(s, r)
+    minVih = minOf(s, r)
+    return ((minVhod <= minVih) && (midVhod <= maxVih))
     //по-моему получилось более читабельно
 
 } // оставлю  на память)
@@ -165,8 +166,8 @@ fun brickPasses(
 }
 */ //сохрнаю на потом
 //if ((a == b) || (a == c) || (c == b)) { //вариант, когда все три знач равны
-  //  if ((a == b) && (b == c)) {
-   //     maxVhod = a
- //       midVhod = b
-  //      minVhod = c
- //   } else {
+//  if ((a == b) && (b == c)) {
+//     maxVhod = a
+//       midVhod = b
+//      minVhod = c
+//   } else {
