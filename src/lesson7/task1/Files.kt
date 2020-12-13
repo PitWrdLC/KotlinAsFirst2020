@@ -75,16 +75,60 @@ fun deleteMarked(inputName: String, outputName: String) {
  * Регистр букв игнорировать, то есть буквы е и Е считать одинаковыми.
  *
  */
-fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
 
-    val mapa = mutableMapOf<String, Int>()
+
+
+
+
+
+
+
+fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
+    var result = mutableMapOf<String, Int>()
+    var sub = substrings.toSet()
+    for (word in substrings) result[word] = 0
+
+    for (l in File(inputName).readLines()) {
+        val corrLine = l.toLowerCase()
+        for (el in sub) {
+            val word = el.toLowerCase()
+            if (corrLine.contains(word)) {
+                for (n in corrLine.indices) {
+                    var cont = 0
+                    var char = 0
+                    while (cont < word.length && char < l.length) {
+                        if (corrLine[char] == word[cont]) {
+                            cont++
+                            char++
+                        } else break
+                    }
+                    if (cont == word.length) result[el] = result[el]!! + 1
+                }
+            }
+        }
+
+    }
+    return result
+}
+
+
+/*    попытка нахождения слов
+var subs = substrings.toSet()
+    var mapa = mutableMapOf<String, Int>()
 
     for (i in substrings) {
         var temp = 0
         for (line in File(inputName).readLines()) {
-            for (word in line.split(" ")) {
-                if (word.toLowerCase().contains(i.toLowerCase())) temp++
+            for (char in line){
 
+                            ////////    var words = char.toLowerCase()
+                            ////////  if (i.contains(words)){
+                            ////////   var coun = 0
+                            ////////     do{
+                            ////////  coun = i.indexOf(words,coun)
+                            ////////       coun++
+                            ////////    }while (coun != -1)
+                            ////////  }
             }
         }
         mapa.put(i, temp)
@@ -94,28 +138,7 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
     return mapa
 }
 
-/*    val mapa = mutableMapOf<String, Int>()
-    val subs = substrings.toSet()
-for (words in subs) mapa[words] = 0
-    for (line in File(inputName).readLines()){
-        val currentLine = line.toLowerCase()
-        for (element in subs) {
-            val words = element.toLowerCase()
-            if (currentLine.contains(words)){
-                var counter = 0
-                do{
-                    counter = currentLine.indexOf(words,counter)
-                    if (counter != -1){
-                        mapa[element] = mapa[element]!!+1
-                        counter++
-                    }
-                }while (counter != - 1 )
-            }
-            println(element)
-        }
-    }
-return mapa
-}*/
+*/
 /*
 */
 

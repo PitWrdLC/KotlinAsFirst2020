@@ -73,7 +73,6 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  * Использовать операции со строками в этой задаче запрещается.
  */
 fun digitNumber(n: Int): Int = TODO()
-
 /**
  * Простая (2 балла)
  *
@@ -87,7 +86,7 @@ fun fib(n: Int): Int = TODO()
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int = TODO()/* {
+fun minDivisor(n: Int): Int  {
     var min: Int = 2
     for (min in 2..n) {
         if (n % min == 0) {
@@ -99,7 +98,7 @@ fun minDivisor(n: Int): Int = TODO()/* {
     }
     println(min)
     return min
-} */
+}
 
 /**
  * Простая (2 балла)
@@ -189,7 +188,7 @@ fun lcm(m: Int, n: Int): Int = TODO()
 fun isCoPrime(m: Int, n: Int): Boolean {
     println(n)
     println(m)
-    if ((n == 1)&&(m == 1)||(n == 1) || (m == 1)) return true
+    if ((n == 1) && (m == 1) || (n == 1) || (m == 1)) return true
     if ((n == m) || (n < 1) || (m < 1)) {
         return false
     } else {
@@ -199,7 +198,7 @@ fun isCoPrime(m: Int, n: Int): Boolean {
             if ((maxPerem % minPerem == 0) || (minPerem == maxPerem)) {
                 return false
             } else {
-                var timePerem = minPerem
+                val timePerem = minPerem
                 minPerem = maxPerem % minPerem
                 maxPerem = timePerem
                 println("$maxPerem !!!! $minPerem")
