@@ -189,6 +189,7 @@ fun lcm(m: Int, n: Int): Int = TODO()
 fun isCoPrime(m: Int, n: Int): Boolean {
     println(n)
     println(m)
+    if ((n == 1)&&(m == 1)) return true
     if ((n == m) || (n <= 1) || (m <= 1)) {
         return false
     } else {

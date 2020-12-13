@@ -353,7 +353,9 @@ fun russian(n: Int): String { // интегрирую числа 10-19 и гот
     var tisacha = 1
     var ost = 0
     println(" this is $k")
-
+if (n>999) {
+    ost = 9000
+}
     if (n > 999) tisacha = 1000
 
     repeat(2){ // хотел через двойной while-do как в прошлом примере но чет не зашло
@@ -371,7 +373,6 @@ fun russian(n: Int): String { // интегрирую числа 10-19 и гот
                 0 -> number += ""
             }
             k -= (k / (100 * tisacha)) * (100 * tisacha)
-            println(" сотня  $k")
         }
         if ((k / (1 * tisacha) >= 10) && (k / (1 * tisacha) < 20)) {
             when (k / (1 * tisacha)) {
@@ -387,8 +388,7 @@ fun russian(n: Int): String { // интегрирую числа 10-19 и гот
                 19 -> number += "девятнадцать "
             }
             k -= (k / (1 * tisacha)) * (1 * tisacha)
-            println(" особая десятка $k")
-            ost = 9000
+            if (n>999) ost = 9000
         }
 
 
@@ -406,7 +406,6 @@ fun russian(n: Int): String { // интегрирую числа 10-19 и гот
                 0 -> number += ""
             }
             k -= (k / (10 * tisacha)) * (10 * tisacha)
-            println(" десятка  $k")
         }
         if (k / (1 * tisacha) > 0) {
             if ((k / 1000 == 2) || (k / 1000 == 1)) {
@@ -421,7 +420,7 @@ fun russian(n: Int): String { // интегрирую числа 10-19 и гот
                 ost = (k / 1000) * 1000
                 when (k / (1 * tisacha)) {
                     9 -> number += "девять "
-                    8 -> number += "весемь "
+                    8 -> number += "восемь "
                     7 -> number += "семь "
                     6 -> number += "шесть "
                     5 -> number += "пять "
@@ -431,9 +430,7 @@ fun russian(n: Int): String { // интегрирую числа 10-19 и гот
                     1 -> number += "один "
                     0 -> number += ""
                 }
-                println(" 2  $k")
                 k -= (k / (1 * tisacha)) * (1 * tisacha)
-                println(" еденицы $k")
             }
         }
         if (ost > 999) {
@@ -455,7 +452,8 @@ fun russian(n: Int): String { // интегрирую числа 10-19 и гот
         tisacha = 1
     }
 println("number $number")
-    return number.removeSuffix(" ")
+
+    return number.removeSuffix(" ").removePrefix(" ")
 }
 
 
