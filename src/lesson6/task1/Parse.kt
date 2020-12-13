@@ -122,7 +122,7 @@ fun bestLongJump(jumps: String): Int {
     var final = -1
     val number = jumps.split(" ").sortedDescending()
     println(number)
-    if(!jumps.matches(Regex("""[0-9- %]*"""))){
+    if (!jumps.matches(Regex("""[0-9- %]*"""))) {
         return final
     }
 
@@ -186,24 +186,19 @@ fun firstDuplicateIndex(str: String): Int = TODO()
  */
 fun mostExpensive(description: String): String {
     var ky = ""
-    println("this is $description")
     try {
         var mapa = description.split("; ").associate {
             val (key, value) = it.split(" ")
             key to value.toDouble()
         }
-        println("$mapa")
         var maxVal = 0.0
         for ((key, value) in mapa) {
-            if (value<= 0 ) {
-                ky = "Any good with price 0.0"
-                return ky
+            if (value == 0.0) {
+                ky = key
             }
             if (value > maxVal) {
                 maxVal = value
-                println(maxVal)
                 ky = key
-                println(ky)
             }
         }
 
