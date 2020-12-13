@@ -76,13 +76,6 @@ fun deleteMarked(inputName: String, outputName: String) {
  *
  */
 
-
-
-
-
-
-
-
 fun countSubstrings(inputName: String, substrings: List<String>): Map<String, Int> {
     var result = mutableMapOf<String, Int>()
     var sub = substrings.toSet()
@@ -95,7 +88,7 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
             if (corrLine.contains(word)) {
                 for (n in corrLine.indices) {
                     var cont = 0
-                    var char = 0
+                    var char = n
                     while (cont < word.length && char < l.length) {
                         if (corrLine[char] == word[cont]) {
                             cont++
