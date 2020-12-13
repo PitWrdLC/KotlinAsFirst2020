@@ -189,8 +189,8 @@ fun lcm(m: Int, n: Int): Int = TODO()
 fun isCoPrime(m: Int, n: Int): Boolean {
     println(n)
     println(m)
-    if ((n == 1)&&(m == 1)) return true
-    if ((n == m) || (n <= 1) || (m <= 1)) {
+    if ((n == 1)&&(m == 1)||(n == 1) || (m == 1)) return true
+    if ((n == m) || (n < 1) || (m < 1)) {
         return false
     } else {
         var maxPerem = (maxOf(n, m))
