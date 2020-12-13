@@ -193,10 +193,8 @@ fun mostExpensive(description: String): String {
         }
         var maxVal = 0.0
         for ((key, value) in mapa) {
-            if (value == 0.0) {
-                ky = key
-            }
-            if (value > maxVal) {
+
+            if (value >= maxVal) {
                 maxVal = value
                 ky = key
             }
