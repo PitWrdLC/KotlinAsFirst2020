@@ -2,6 +2,8 @@
 
 package lesson6.task1
 
+import ru.spbstu.kotlin.typeclass.classes.defaultValue
+
 // Урок 6: разбор строк, исключения
 // Максимальное количество баллов = 13
 // Рекомендуемое количество баллов = 11
@@ -187,18 +189,26 @@ fun firstDuplicateIndex(str: String): Int = TODO()
  * Все цены должны быть больше нуля либо равны нулю.
  */
 fun mostExpensive(description: String): String {
-    var k = ""
+    var ky = ""
 println("this is $description")
     try {
         var mapa = description.split("; ").associate {
-            val (key, valye) = it.split(" ")
-            key to valye.toDouble()
+            val (key, value) = it.split(" ")
+            key to value.toDouble()
         }
         println("$mapa")
-
+var maxVal = 0.0
+        for(  (key,value) in mapa){
+            if (value> maxVal){
+                maxVal = value
+                println(maxVal)
+                ky = key
+                println(ky)
+            }
+        }
 
     } finally {
-        return k
+        return ky
 
     }
 }
