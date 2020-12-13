@@ -118,29 +118,25 @@ fun flattenPhoneNumber(phone: String): String = TODO()
  */
 fun bestLongJump(jumps: String): Int {
     println("this is $jumps")
+    var proverkaFin = ""
     var final = -1
     val number = jumps.split(" ").sortedDescending()
     println(number)
+    if(!jumps.matches(Regex("""[0-9- %]*"""))){
+        return final
+    }
 
-    var proverka = jumps.filterNot { it.isDigit() }.filterNot { it == '%' }
-        .filterNot { it == '-' } // обнаруживание зашкварных символов путем исключения правильных петушков ...отом обнаружил containsAll
-    println("proverka$proverka")
 
     try {
-        var proverkaFin = proverka.removePrefix(" ").first() //как словить исключение и выдать импостера?
-        println("proverkaFin$proverkaFin")
-        return -1
+
+        final = number.elementAt(0).toInt()
+        println(final)
     } finally {
-
-        try {
-            final = number.elementAt(0).toInt()
-            println(final)
-        } finally {
-            return final
-        }
-
+        return final
     }
+
 }
+
 
 /**
  * Сложная (6 баллов)
@@ -190,16 +186,20 @@ fun firstDuplicateIndex(str: String): Int = TODO()
  */
 fun mostExpensive(description: String): String {
     var ky = ""
-println("this is $description")
+    println("this is $description")
     try {
         var mapa = description.split("; ").associate {
             val (key, value) = it.split(" ")
             key to value.toDouble()
         }
         println("$mapa")
-var maxVal = 0.0
-        for(  (key,value) in mapa){
-            if (value> maxVal){
+        var maxVal = 0.0
+        for ((key, value) in mapa) {
+            if (value<= 0 ) {
+                ky = "Any good with price 0.0"
+                return ky
+            }
+            if (value > maxVal) {
                 maxVal = value
                 println(maxVal)
                 ky = key
