@@ -53,7 +53,7 @@ fun daysInMonth(month: Int, year: Int): Int = TODO()
  */
 fun circleInside(
     x1: Double, y1: Double, r1: Double,
-    x2: Double, y2: Double, r2: Double
+    x2: Double, y2: Double, r2: Double,
 ): Boolean = TODO()
 
 /**
@@ -70,53 +70,16 @@ fun brickPasses(
     b: Int,
     c: Int,
     r: Int,
-    s: Int
+    s: Int,
 ): Boolean {
-    var maxVhod: Int
-    var minVhod: Int
-    var midVhod: Int
-    var maxVih: Int
-    var minVih: Int
-  //  if (a == c) {
- //       if (a > b) {
- //           maxVhod = a
-  //          minVhod = b
-  //          midVhod = c
- //       } else {
- //           maxVhod = b
- //           minVhod = a
- //           midVhod = c
-  //      }
-  //  } else if (a == b) {
- //       if (a > c) {
- //           maxVhod = a
- //           minVhod = c
- //           midVhod = b
- //       } else {
- //           maxVhod = c
- //           minVhod = a
- //           midVhod = b
-//        }
- //   } else if (b == c) {
- //       if (b > a) {
-  //          maxVhod = c
-//            minVhod = a
- //           midVhod = b
- //       } else {
- //           maxVhod = a
-  //          minVhod = b
- //           midVhod = c
-  //      }
- //   } else
-
-        maxVhod = maxOf(a, b, c)
-       minVhod = minOf(a, b, c)
-        midVhod = a + b + c - maxVhod - minVhod
-
-    maxVih = maxOf(s, r)
-    minVih = minOf(s, r)
+   // var (maxVhod, minVhod, midVhod, maxVih, minVih):Int   а возможно ли обьявить несколько переменных в 1 строчке?
+    var maxVhod = maxOf(a, b, c)
+    var minVhod = minOf(a, b, c)
+    var midVhod = a + b + c - maxVhod - minVhod
+    var maxVih = maxOf(s, r)
+    var minVih = minOf(s, r)
     return ((minVhod <= minVih) && (midVhod <= maxVih))
-    //по-моему получилось более читабельно
+
 
 } // оставлю  на память)
 /*

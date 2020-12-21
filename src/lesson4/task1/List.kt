@@ -242,88 +242,77 @@ fun decimalFromString(str: String, base: Int): Int = TODO()
  * Например: 23 = XXIII, 44 = XLIV, 100 = C
  */
 fun roman(n: Int): String {
+    val numList = listOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
+    var namFin = mutableListOf("")
     var k = n
     var time = 10
     var number = ""
-    val m = "M"
-    val cm = "CM"
-    val d = "D"
-    val cd = "CD"
-    val c = "C"
-    val xc = "XC"
-    val l = "L"
-    val xl = "XL"
-    val x = "X"
-    val ix = "IX"
-    val v = "V"
-    val iv = "IV"
-    val i = "I"
     do {
-        println(k)
         do {
             if (k - 1000 >= 0) {
                 k = k - 1000
-                number += m
+                namFin.add(numList.elementAt(0)) // было ( number += numList.elementAt(9) ) но мне показалоссь что лист в лист переносить лучше
+                println(namFin)
                 break
             }
             if (k - 900 >= 0) {
                 k = k - 900
-                number += cm
+                namFin.add(numList.elementAt(1))
                 break
             }
             if (k - 500 >= 0) {
                 k = k - 500
-                number += d
+                namFin.add(numList.elementAt(2))
                 break
             }
             if (k - 400 >= 0) {
                 k = k - 400
-                number += cd
+                namFin.add(numList.elementAt(3))
                 break
             }
             if (k - 100 >= 0) {
                 k = k - 100
-                number += c
+                namFin.add(numList.elementAt(4))
                 break
             }
             if (k - 90 >= 0) {
                 k = k - 90
-                number += xc
+                namFin.add(numList.elementAt(5))
                 break
             }
             if (k - 50 >= 0) {
                 k = k - 50
-                number += l
+                namFin.add(numList.elementAt(6))
                 break
             }
             if (k - 40 >= 0) {
                 k = k - 40
-                number += xl
+                namFin.add(numList.elementAt(7))
                 break
             }
             if (k - 10 >= 0) {
                 k = k - 10
-                number += x
+                namFin.add(numList.elementAt(8))
                 break
             }
             if (k - 9 >= 0) {
                 k = k - 9
-                number += ix
+                namFin.add(numList.elementAt(9))
                 break
             }
             if (k - 5 >= 0) {
                 k = k - 5
-                number += v
+                namFin.add(numList.elementAt(10))
                 break
             }
             if (k - 4 >= 0) {
                 k = k - 4
-                number += iv
+                namFin.add(numList.elementAt(11))
                 break
             }
             if (k - 1 >= 0) {
                 k = k - 1
-                number += i
+                namFin.add(numList.elementAt(12))
                 break
             }
             if (k == 0) {
@@ -333,12 +322,12 @@ fun roman(n: Int): String {
         } while (k > 0)
 
     } while (k > 0)
-    println("$number FINALY")
+    for (element in namFin) {
+        number += element
+    }
     return number
 }
-/*  // padEnd это привелегия char?
 
-*/
 
 /**
  * Очень сложная (7 баллов)
@@ -347,6 +336,99 @@ fun roman(n: Int): String {
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
+fun russian(n: Int): String { // посмотрел пару вариаций сокурсников... у них собственно говороя ничуть не понятней
+    println(" this is $n") // ниже вставлена олд версия
+    val hundredRus = listOf("", "сто ", "двести ", "триста ", "четыреста ", "пятьсот ", "шестьсот ", "семьсот ", "восемьсот ", "девятьсот ")
+    val dozenRus = listOf("", "десять ", "двадцать ", "тридцать ", "сорок ", "пятьдесят ", "шестьдесят ", "семьдесят ", "восемьдесят ", "девяносто ")
+    val unitRus = listOf("", "один ", "два ", "три ", "четыре ", "пять ", "шесть ", "семь ", "восемь ", "девять ")
+    val elevenRus = listOf("", "", "", "", "", "", "", "", "", "", "десять ", "одиннадцать ", "двенадцать ", "тринадцать ", "четырнадцать ", "пятнадцать ", "шестнадцать ", "семнадцать ", "восемнадцать ", "девятнадцать ")
+    val declineThousandRus = listOf("", "тысяча ", "тысячи ", "тысячи ", "тысячи ", "тысяч ", "тысяч ", "тысяч ", "тысяч ", "тысяч ")
+    val exceptionThousandRus = listOf("", "одна ", "две ")
+    var motherRussia = mutableListOf("") // как и в примере выше я не хочу использовать number +=
+    var number = ""
+    var k = n
+    var numberTest = ""
+    var tisacha = 1 // определение множителя чтоб можно было зациклиться
+    var ost = 0 // эта переменная на определение склонения слова тысяча ( определится в процессе цикла )
+    // !!!!  var timе !!!! эта переменная нужна чтоб понять какой индекс брать из листа
+    if (n > 999) ost = 9000
+    if (n > 999) tisacha = 1000
+/*
+основной принип: он крутит дважды цикл при котором из аналога вводимого числа (n) ( в моем случае это  (k)  ) из которого постепенно вычитаются сотни десятки и еденицы
+(если числа меньше 999 то на втором круге вычитать попросто нечего) а если числа больше 1000 то в конце добавится соответсвующую склоняемая(тысяча)
+и соответсвенно будет что вычитывать из заднного числа на втором круге
+
+ну и сюда бли интегрированы  исключения типа (одиннадцать двенадцать) и ( одна две) они были просто добавлены  ДО срабатывания основного иф
+а так как после них ПЕРЕМЕННЫЕ уже изменены  то (   (одиннадцать двенадцать) и ( одна две)    ) просто пропускают основные элементы
+ */
+    repeat(2) { //
+        if (k / (100 * tisacha) > 0) {
+
+            val time = k / (100 * tisacha)                      //это и эти фрагменты определения великого и могучего
+            motherRussia.add(hundredRus.elementAt(time))        //("", "сто ", "двести ", "триста ", "четыреста ", "пятьсот ", "шестьсот ", "семьсот ", "восемьсот ", "девятьсот ")
+            println(motherRussia)                               //они будуот отделены пробелом
+
+            k -= (k / (100 * tisacha)) * (100 * tisacha)
+        }
+        if ((k / (1 * tisacha) >= 10) && (k / (1 * tisacha) < 20)) {
+
+            val time = k / (1 * tisacha)
+            motherRussia.add(elevenRus.elementAt(time))//("десять ", "одиннадцать ", "двенадцать ", "тринадцать ", "четырнадцать ", "пятнадцать ", "шестнадцать ", "семнадцать ", "восемнадцать ", "девятнадцать ")
+            println(motherRussia)
+
+            if (k > 999) ost = 9000
+            k -= (k / (1 * tisacha)) * (1 * tisacha)
+        }
+        if (k / (10 * tisacha) > 1) {
+
+            val time = k / (10 * tisacha)
+            motherRussia.add(dozenRus.elementAt(time)) //("", "десять ", "двадцать ", "тридцать ", "сорок ", "пятьдесят ", "шестьдесят ", "семьдесят ", "восемьдесят ", "девяносто ")
+            println(motherRussia)
+
+            k -= (k / (10 * tisacha)) * (10 * tisacha)
+        }
+        if (k / (1 * tisacha) > 0) {
+            if ((k / 1000 == 2) || (k / 1000 == 1)) {
+                ost = (k / 1000) * 1000
+
+                val time = k / 1000
+                motherRussia.add(exceptionThousandRus.elementAt(time))//("", "одна ", "две ")
+                println(motherRussia)
+
+                k -= (k / 1000) * 1000
+            } else {
+                ost = (k / 1000) * 1000
+
+                val time = k / (1 * tisacha)
+                motherRussia.add(unitRus.elementAt(time)) //("", "один ", "два ", "три ", "четыре ", "пять ", "шесть ", "семь ", "восемь ", "девять ")
+                println(motherRussia)
+
+                k -= (k / (1 * tisacha)) * (1 * tisacha)
+            }
+        }
+        if (ost > 999) {
+            tisacha = 1
+
+            val time = ost / 1000
+            motherRussia.add(declineThousandRus.elementAt(time))//("", "тысяча ", "тысячи ", "тысячи ", "тысячи ", "тысяч ", "тысяч ", "тысяч ", "тысяч ", "тысяч ")
+            println(motherRussia)
+
+            ost = 0 // это нужно чтоб добавление (тысячаб тысячи тысяч ) не сработало дважды
+        }
+        tisacha = 1
+    }
+    for (element in motherRussia) {
+        numberTest += element
+    }
+    println("numberTest $numberTest")
+    return numberTest.removeSuffix(" ").removePrefix(" ")
+}
+/* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+тут оставлю как было ранее (принцип остался тем же но немного изменилось оформление
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+по-моему стало лучше
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 fun russian(n: Int): String { // интегрирую числа 10-19 и готово( ну и пробел подумаю как настроить нормально)
     var number: String = ""
     var k = n
@@ -458,3 +540,4 @@ println("number $number")
 }
 
 
+*/

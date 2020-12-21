@@ -186,14 +186,13 @@ fun lcm(m: Int, n: Int): Int = TODO()
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
 fun isCoPrime(m: Int, n: Int): Boolean {
-    println(n)
-    println(m)
-    if ((n == 1) && (m == 1) || (n == 1) || (m == 1)) return true
-    if ((n == m) || (n < 1) || (m < 1)) {
+    println( "Исправьте замечание плз")
+    if ((n == 1) || (m == 1)) return true // моментальное определение взамно простого числа
+    if ((n == m) || (n < 1) || (m < 1)) {   // а это заведомо неверные числа их проверять не нужно
         return false
     } else {
-        var maxPerem = (maxOf(n, m))
-        var minPerem = (minOf(n, m))
+        var maxPerem = maxOf(n, m)
+        var minPerem = minOf(n, m)
         do {
             if ((maxPerem % minPerem == 0) || (minPerem == maxPerem)) {
                 return false

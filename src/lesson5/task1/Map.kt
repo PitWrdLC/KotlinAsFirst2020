@@ -35,7 +35,7 @@ fun shoppingListCost(shoppingList: List<String>, costs: Map<String, Double>): Do
  */
 fun filterByCountryCode(
     phoneBook: MutableMap<String, String>,
-    countryCode: String
+    countryCode: String,
 ) {
     val namesToRemove = mutableListOf<String>()
 
@@ -58,7 +58,7 @@ fun filterByCountryCode(
  */
 fun removeFillerWords(
     text: List<String>,
-    vararg fillerWords: String
+    vararg fillerWords: String,
 ): List<String> {
     val fillerWordSet = setOf(*fillerWords)
 
@@ -277,7 +277,7 @@ fun propagateHandshakes(friends: Map<String, Set<String>>): Map<String, Set<Stri
 fun findSumOfTwo(list: List<Int>, number: Int): Pair<Int, Int> { // зачем нужны списки в списке?
     for (num in list.indices) {
         for (nym in num + 1 until list.size) { // дай бог здоровья тому, кто придумал until
-            if ((list[num] + list[nym] )== number && num != nym)
+            if ((list[num] + list[nym]) == number && num != nym)
                 return Pair(num, nym)
         }
     }
