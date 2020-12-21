@@ -157,7 +157,7 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
 
     bolvanka.forEach {
         var num = testPhoneBooks[it.key]
-        var allegedAttacker = it.value
+        val allegedAttacker = it.value
 
         if (num == null) {
             num = allegedAttacker
