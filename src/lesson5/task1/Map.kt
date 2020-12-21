@@ -2,6 +2,8 @@
 
 package lesson5.task1
 
+import java.lang.NullPointerException
+
 // Урок 5: ассоциативные массивы и множества
 // Максимальное количество баллов = 14
 // Рекомендуемое количество баллов = 9
@@ -157,20 +159,43 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
 
     bolvanka.forEach {
         var num = testPhoneBooks[it.key]
-        val allegedAttacker = it.value
+        var allegedAttacker = it.value
 
-        if (num == null) {
+        /*      try {
+            if (num == allegedAttacker) {
+                num = allegedAttacker
+
+            } else {
+                num += ", "
+                num += allegedAttacker
+            }
+            println(num)
+            testPhoneBooks[it.key] = num
+        } catch (e: NullPointerException) {
             num = allegedAttacker
-
-        } else if (num == allegedAttacker) {
-            num = allegedAttacker
-
-        } else {
-            num += ", "
-            num += allegedAttacker
         }
-        println(num)
-        testPhoneBooks[it.key] = num
+    }
+    return testPhoneBooks
+} */
+
+        bolvanka.forEach {
+            var num = testPhoneBooks[it.key]
+            var allegedAttacker = it.value
+
+            if (num == null) {
+                num = allegedAttacker
+
+            } else if (num == allegedAttacker) {
+                num = allegedAttacker
+
+            } else {
+                num += ", "
+                num += allegedAttacker
+            }
+            println(num)
+            testPhoneBooks[it.key] = num
+        }
+
     }
     return testPhoneBooks
 }

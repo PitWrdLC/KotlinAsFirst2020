@@ -138,7 +138,6 @@ fun bestLongJump(jumps: String): Int {
 }
 
 
-
 /**
  * Сложная (6 баллов)
  *
@@ -194,16 +193,15 @@ fun mostExpensive(description: String): String {
         }
         var maxVal = 0.0
         for ((key, value) in mapa) {
-
             if (value >= maxVal) {
                 maxVal = value
                 ky = key
             }
         }
-
+    } catch (e: NumberFormatException) {
+        return ky
     } finally {
         return ky
-
     }
 }
 
