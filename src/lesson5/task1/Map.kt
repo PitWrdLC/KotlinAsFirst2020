@@ -154,13 +154,13 @@ fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = TODO()
  *   ) -> mapOf("Emergency" to "112, 911", "Police" to "02")
  */
 fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> {
-    val testPhoneBooks = mapA.toSortedMap()
-    val bolvanka = mapB.toMap()
+    println("$mapA , $mapB")
+    val testPhoneBooks = mapA.toMutableMap()
+    val bolvanka = mapB.toMutableMap()
 
     bolvanka.forEach {
         var num = testPhoneBooks[it.key]
         var allegedAttacker = it.value
-
         /*      try {
             if (num == allegedAttacker) {
                 num = allegedAttacker
@@ -178,28 +178,20 @@ fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<S
     return testPhoneBooks
 } */
 
-        bolvanka.forEach {
-            var num = testPhoneBooks[it.key]
-            var allegedAttacker = it.value
+        if ((num == null) || (num == allegedAttacker)) {
+            num = allegedAttacker
 
-            if (num == null) {
-                num = allegedAttacker
-
-            } else if (num == allegedAttacker) {
-                num = allegedAttacker
-
-            } else {
-                num += ", "
-                num += allegedAttacker
-            }
-            println(num)
-            testPhoneBooks[it.key] = num
+        } else {
+            num += ", "
+            num += allegedAttacker
         }
-
+        println(num)
+        testPhoneBooks[it.key] = num
     }
+
+
     return testPhoneBooks
 }
-
 
 /*
 
