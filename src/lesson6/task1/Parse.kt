@@ -131,10 +131,10 @@ fun bestLongJump(jumps: String): Int {
 
         final = number.elementAt(0).toInt()
         println(final)
-    } finally {
+    } catch (e:NumberFormatException) {
         return final
     }
-
+    return final
 }
 
 
@@ -199,7 +199,7 @@ fun mostExpensive(description: String): String {
             }
         }
     } catch (e: NumberFormatException) {
-        return ky        // почему эта строчка не в котоеде?
+        return ky
     } finally {
         return ky
     }
