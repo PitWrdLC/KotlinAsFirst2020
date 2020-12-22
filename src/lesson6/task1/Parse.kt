@@ -199,7 +199,7 @@ fun mostExpensive(description: String): String {
             }
         }
     } catch (e: NumberFormatException) {
-        return ky
+        return ky        // почему эта строчка не в котоеде?
     } finally {
         return ky
     }
